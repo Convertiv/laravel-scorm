@@ -1,6 +1,6 @@
 {
-    "name": "Convertiv/laravel-scorm",
-    "description": "PEOPLEAPS scorm package",
+    "name": "convertiv/laravel-scorm",
+    "description": "Convertiv's fork of laravel-scorm",
     "type": "library",
     "license": "MIT",
     "authors": [
