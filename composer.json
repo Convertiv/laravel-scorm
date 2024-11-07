@@ -1,5 +1,5 @@
 {
-    "name": "devianl2/laravel-scorm",
+    "name": "Convertiv/laravel-scorm",
     "description": "PEOPLEAPS scorm package",
     "type": "library",
     "license": "MIT",
@@ -7,13 +7,16 @@
         {
             "name": "Devian Leong",
             "email": "devian@peoplelogy.com"
+        },{
+            "name": "Brad Mering",
+            "email": "brad@convertiv.com"
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "doctrine/common": "^3.1",
         "league/flysystem": "^2.0 || ^3.0",
-        "nesbot/carbon": "^2.42",
+        "nesbot/carbon": "^2.71.0 || ^3.0.0",
         "ext-zip": "*",
         "ext-dom": "*"
     },
