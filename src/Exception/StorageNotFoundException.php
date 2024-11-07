@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Exception;
+namespace Convertiv\Scorm\Exception;
 
 use Exception;
 

@@ -1,22 +1,22 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Manager;
+namespace Convertiv\Scorm\Manager;
 
 use Carbon\Carbon;
 use DOMDocument;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use Peopleaps\Scorm\Entity\Scorm;
-use Peopleaps\Scorm\Entity\ScoTracking;
-use Peopleaps\Scorm\Exception\InvalidScormArchiveException;
-use Peopleaps\Scorm\Library\ScormLib;
-use Peopleaps\Scorm\Model\ScormModel;
-use Peopleaps\Scorm\Model\ScormScoModel;
-use Peopleaps\Scorm\Model\ScormScoTrackingModel;
+use Convertiv\Scorm\Entity\Scorm;
+use Convertiv\Scorm\Entity\ScoTracking;
+use Convertiv\Scorm\Exception\InvalidScormArchiveException;
+use Convertiv\Scorm\Library\ScormLib;
+use Convertiv\Scorm\Model\ScormModel;
+use Convertiv\Scorm\Model\ScormScoModel;
+use Convertiv\Scorm\Model\ScormScoTrackingModel;
 use Illuminate\Support\Str;
-use Peopleaps\Scorm\Entity\Sco;
+use Convertiv\Scorm\Entity\Sco;
 
 class ScormManager
 {

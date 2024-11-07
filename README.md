@@ -1,8 +1,10 @@
-# Laravel Scorm Handler (DISCONTINUE)
+# Laravel Scorm Handler
 ## _Design for Laravel LMS_
 
-[![N|Solid](https://peopleaps.com/wp-content/uploads/2020/11/p2-01-01.png)](https://www.peopleaps.com)
+---
+This project was forked from devianl2/laravel-scorm since that package is no longer actively maintained.
 
+---
 
 Laravel Scorm Handler is a laravel package that simplify scorm package contents (zip file) into laravel storage.
 
@@ -33,7 +35,7 @@ composer require devianl2/laravel-scorm
 ## Step 2:
 Run vendor publish for migration and config file
 ```sh
-php artisan vendor:publish --provider="Peopleaps\Scorm\ScormServiceProvider"
+php artisan vendor:publish --provider="Convertiv\Scorm\ScormServiceProvider"
 ```
 
 ## Step 3:

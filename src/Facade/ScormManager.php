@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Facade;
+namespace Convertiv\Scorm\Facade;
 
 use Illuminate\Support\Facades\Facade;
 

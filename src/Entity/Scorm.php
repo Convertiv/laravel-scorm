@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Entity;
+namespace Convertiv\Scorm\Entity;
 
-use Peopleaps\Scorm\Model\ScormModel;
+use Convertiv\Scorm\Model\ScormModel;
 
 class Scorm
 {

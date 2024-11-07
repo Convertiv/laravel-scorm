@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Peopleaps\Scorm;
+namespace Convertiv\Scorm;
 
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Peopleaps\Scorm\Manager\ScormManager;
+use Convertiv\Scorm\Manager\ScormManager;
 
 class ScormServiceProvider extends ServiceProvider
 {

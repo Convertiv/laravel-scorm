@@ -22,16 +22,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Peopleaps\\Scorm\\": "/src"
+            "Convertiv\\Scorm\\": "/src"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Peopleaps\\Scorm\\ScormServiceProvider"
+                "Convertiv\\Scorm\\ScormServiceProvider"
             ],
             "aliases": {
-                "ScormManager": "Peopleaps\\Scorm\\Facade\\ScormManager"
+                "ScormManager": "Convertiv\\Scorm\\Facade\\ScormManager"
             }
         }
     },

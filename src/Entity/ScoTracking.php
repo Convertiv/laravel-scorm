@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Entity;
+namespace Convertiv\Scorm\Entity;
 
 
 use Carbon\Carbon;

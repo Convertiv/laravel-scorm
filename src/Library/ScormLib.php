@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Library;
+namespace Convertiv\Scorm\Library;
 
 
 use DOMDocument;
-use Peopleaps\Scorm\Entity\Sco;
-use Peopleaps\Scorm\Exception\InvalidScormArchiveException;
+use Convertiv\Scorm\Entity\Sco;
+use Convertiv\Scorm\Exception\InvalidScormArchiveException;
 use Illuminate\Support\Str;
 
 class ScormLib

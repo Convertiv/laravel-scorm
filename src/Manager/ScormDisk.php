@@ -1,13 +1,13 @@
 <?php
 
-namespace Peopleaps\Scorm\Manager;
+namespace Convertiv\Scorm\Manager;
 
 use Exception;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Peopleaps\Scorm\Exception\StorageNotFoundException;
+use Convertiv\Scorm\Exception\StorageNotFoundException;
 
 class ScormDisk
 {

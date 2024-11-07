@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Peopleaps\Scorm\Model;
+namespace Convertiv\Scorm\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
