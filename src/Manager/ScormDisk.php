@@ -47,7 +47,18 @@ class ScormDisk
         $storageDisk = $this->getDisk();
         if ($storageDisk->exists($uuid . '/publishSettings.js')) {
             $publishSettings = $storageDisk->get($uuid . '/publishSettings.js');
-            $publishSettings = str_replace('https://reports.easygenerator.com', config('url'), $publishSettings);
+            $publishSettings = str_replace([
+                "https://lxp.easygenerator.com",
+                "https://nps.easygenerator.com",
+                "https://auth.easygenerator.com",
+                "https://learn.easygenerator.com",
+                "https://progress-storage.easygenerator.com",
+                "pdf-converter.easygenerator.com",
+                "https://bcc30a12324e461a87d344637a02a4b0@sentry.io/1264190",
+                "live.easygenerator.com",
+                "https://learn.easygenerator.com/branding-page",
+                'https://reports.easygenerator.com'
+            ], config('app.url'), $publishSettings);
             $storageDisk->put($uuid . '/publishSettings.js', $publishSettings);
         }
     }
