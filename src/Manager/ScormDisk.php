@@ -40,6 +40,18 @@ class ScormDisk
         return false;
     }
 
+    public function cleanScorm($uuid)
+    {
+        // Once its unzipped, make some known changes
+        // Read the publishSettings.js
+        $storageDisk = $this->getDisk();
+        if ($storageDisk->exists($uuid . '/publishSettings.js')) {
+            $publishSettings = $storageDisk->get($uuid . '/publishSettings.js');
+            $publishSettings = str_replace('https://reports.easygenerator.com', config('url'), $publishSettings);
+            $storageDisk->put($uuid . '/publishSettings.js', $publishSettings);
+        }
+    }
+
     /**
      * @param string $file SCORM archive uri on storage.
      * @param callable $fn function run user stuff before unlink

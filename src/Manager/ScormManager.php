@@ -309,14 +309,7 @@ class ScormManager
          * @param string $hashName name of the destination directory
          */
         $this->scormDisk->unzipper($file, $this->uuid);
-        // Once its unzipped, make some known changes
-        // Read the publishSettings.js
-        $storageDisk = $this->scormDisk->getDisk();
-        if ($storageDisk->exists($this->uuid . '/publishSettings.js')) {
-            $publishSettings = $storageDisk->get($this->uuid . '/publishSettings.js');
-            $publishSettings = str_replace('https://reports.easygenerator.com', config('url'), $publishSettings);
-            $storageDisk->put($this->uuid . '/publishSettings.js', $publishSettings);
-        }
+        $this->scormDisk->cleanScorm($this->uuid);
         return [
             'identifier' => $scormData['identifier'],
             'uuid' => $this->uuid,
