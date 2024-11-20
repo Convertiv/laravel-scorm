@@ -50,22 +50,28 @@ class ScormDisk
             if (Storage::exists($file)) {
                 Storage::delete($file);
             }
-            Storage::writeStream($file, $this->getArchiveDisk()->readStream($file));
-            $path = Storage::path($file);
+            // Storage::->writeStream($file, $this->getArchiveDisk()->readStream($file));
+            $path = $this->getArchiveDisk()->path($file);
             call_user_func($fn, $path);
             // Clean local resources
             $this->clean($file);
         } catch (Exception $ex) {
             Log::error($ex->getMessage());
-            throw new StorageNotFoundException('scorm_archive_not_found');
+            throw new StorageNotFoundException($ex->getMessage());
         }
     }
 
+    /**
+     * Remove unneeded files
+     *
+     * @param [type] $file
+     * @return void
+     */
     private function clean($file)
     {
         try {
-            Storage::delete($file);
-            Storage::deleteDirectory(dirname($file)); // delete temp dir
+            // Storage::disk(config('scorm.archive'))->delete($file);
+            // Storage::disk('local')->deleteDirectory(dirname($file)); // delete temp dir
         } catch (Exception $ex) {
             Log::error($ex->getMessage());
         }

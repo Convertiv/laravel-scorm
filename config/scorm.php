@@ -24,6 +24,6 @@ return [
      * 'bucket' => env('AWS_SCORM_BUCKET'),
      * ],
      */
-    'disk'       =>  'local',
+    'disk'       => 'local',
     'archive'    => 'local',
 ];

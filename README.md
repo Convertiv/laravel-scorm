@@ -22,14 +22,10 @@ Highlight of this package:
 
 
 ## Step 1:
-Install from composer (For flysystem v1)
-```sh
-composer require devianl2/laravel-scorm:"^3.0"
-```
 
 Install from composer (For flysystem v2/v3)
 ```sh
-composer require devianl2/laravel-scorm
+composer require convertiv/laravel-scorm
 ```
 
 ## Step 2:

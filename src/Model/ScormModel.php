@@ -53,4 +53,21 @@ class ScormModel extends Model
     {
         return $this->hasMany(ScormScoModel::class, 'scorm_id', 'id');
     }
+
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
+    public function toRelationshipArray($parent = false, $shallow = false)
+    {
+        $data = [
+            "id" => $this->id,
+            "title" => $this->title,
+            "identifier" => $this->identifier,
+            "url" => config('scorm.url') . '/' . $this->uuid . '/index.html',
+        ];
+
+        return $data;
+    }
 }

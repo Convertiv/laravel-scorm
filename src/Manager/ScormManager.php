@@ -39,22 +39,26 @@ class ScormManager
         $this->scormDisk = new ScormDisk();
     }
 
+    /**
+     * Upload a SCORM package from a URI.
+     *
+     * @param File $file
+     * @param string | null $uuid
+     * @return ScormModel | null
+     */
     public function uploadScormFromUri($file, $uuid = null)
     {
         // $uuid is meant for user to update scorm content. Hence, if user want to update content should parse in existing uuid
-        if (!empty($uuid))
-        {
+        if (!empty($uuid)) {
             $this->uuid =   $uuid;
-        }
-        else
-        {
+        } else {
             $this->uuid = Str::uuid();
         }
 
 
         $scorm = null;
         $this->scormDisk->readScormArchive($file, function ($path) use (&$scorm, $file, $uuid) {
-            $filename = basename($file);
+            $filename = basename($path);
             $scorm = $this->saveScorm($path, $filename, $uuid);
         });
         return $scorm;
@@ -69,12 +73,9 @@ class ScormManager
     public function uploadScormArchive(UploadedFile $file, $uuid = null)
     {
         // $uuid is meant for user to update scorm content. Hence, if user want to update content should parse in existing uuid
-        if (!empty($uuid))
-        {
+        if (!empty($uuid)) {
             $this->uuid =   $uuid;
-        }
-        else
-        {
+        } else {
             $this->uuid = Str::uuid();
         }
 
@@ -117,8 +118,7 @@ class ScormManager
         }
 
         // This uuid is use when the admin wants to edit existing scorm file.
-        if (!empty($uuid))
-        {
+        if (!empty($uuid)) {
             $this->uuid =   $uuid; // Overwrite system generated uuid
         }
 
@@ -146,7 +146,8 @@ class ScormManager
             $scorm = $scorm->first();
             $this->deleteScormData($scorm);
         }
-
+        $scorm->resource_id = 0;
+        $scorm->resource_type = '';
         $scorm->uuid =   $this->uuid;
         $scorm->title =   $scormData['title'];
         $scorm->version =   $scormData['version'];
@@ -308,7 +309,14 @@ class ScormManager
          * @param string $hashName name of the destination directory
          */
         $this->scormDisk->unzipper($file, $this->uuid);
-
+        // Once its unzipped, make some known changes
+        // Read the publishSettings.js
+        $storageDisk = $this->scormDisk->getDisk();
+        if ($storageDisk->exists($this->uuid . '/publishSettings.js')) {
+            $publishSettings = $storageDisk->get($this->uuid . '/publishSettings.js');
+            $publishSettings = str_replace('https://reports.easygenerator.com', config('url'), $publishSettings);
+            $storageDisk->put($this->uuid . '/publishSettings.js', $publishSettings);
+        }
         return [
             'identifier' => $scormData['identifier'],
             'uuid' => $this->uuid,
@@ -608,7 +616,8 @@ class ScormManager
                 $tracking->setLessonStatus($lessonStatus);
                 $bestStatus = $lessonStatus;
 
-                if (empty($tracking->getCompletionStatus())
+                if (
+                    empty($tracking->getCompletionStatus())
                     || ($completionStatus !== $tracking->getCompletionStatus() && $statusPriority[$completionStatus] > $statusPriority[$tracking->getCompletionStatus()])
                 ) {
                     // This is no longer needed as completionStatus and successStatus are merged together
@@ -656,7 +665,8 @@ class ScormManager
         return $updateResult;
     }
 
-    public function resetUserData($scormId, $userId) {
+    public function resetUserData($scormId, $userId)
+    {
         $scos   =   ScormScoModel::where('scorm_id', $scormId)->get();
 
         foreach ($scos as $sco) {
