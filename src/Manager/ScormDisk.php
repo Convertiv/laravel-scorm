@@ -58,7 +58,7 @@ class ScormDisk
                 "live.easygenerator.com",
                 "https://learn.easygenerator.com/branding-page",
                 'https://reports.easygenerator.com'
-            ], config('app.url'), $publishSettings);
+            ], config('app.url') . '/api', $publishSettings);
             $storageDisk->put($uuid . '/publishSettings.js', $publishSettings);
         }
     }
