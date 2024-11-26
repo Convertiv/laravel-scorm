@@ -61,6 +61,18 @@ class ScormDisk
             ], config('app.url') . '/api', $publishSettings);
             $storageDisk->put($uuid . '/publishSettings.js', $publishSettings);
         }
+
+        // Read the index.html
+        if ($storageDisk->exists($uuid . '/index.html')) {
+            $indexHtml = $storageDisk->get($uuid . '/index.html');
+            $indexHtml = str_replace(
+                "document.documentMode && (document.getElementById(\"not-supported-page\").style.display = \"block\");",
+                "",
+                $indexHtml
+            );
+            $indexHtml = substr_replace($indexHtml, '<script src="' . config('app.frontend_url') . '/lmsAPI.js"></script>', strpos($indexHtml, '<body>') + 6, 0);
+            $storageDisk->put($uuid . '/index.html', $indexHtml);
+        }
     }
 
     /**
