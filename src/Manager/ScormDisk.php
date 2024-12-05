@@ -66,7 +66,8 @@ class ScormDisk
         if ($storageDisk->exists($uuid . '/index.html')) {
             $indexHtml = $storageDisk->get($uuid . '/index.html');
             $indexHtml = str_replace(
-                "document.documentMode && (document.getElementById(\"not-supported-page\").style.display = \"block\");",
+                'document.documentMode&&(document.getElementById("not-supported-page").style.display="block")',
+                //"document.documentMode && (document.getElementById(\"not-supported-page\").style.display = \"block\");",
                 "",
                 $indexHtml
             );
