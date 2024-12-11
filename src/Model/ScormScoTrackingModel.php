@@ -48,4 +48,24 @@ class ScormScoTrackingModel extends Model
     {
         return $this->belongsTo(ScormScoModel::class, 'sco_id', 'id');
     }
+
+    /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
+    public function toRelationshipArray($parent = false, $shallow = false)
+    {
+        $data = [
+            "id" => $this->id,
+            "user_id" => $this->user_id,
+            "sco_id" => $this->sco_id,
+            "lesson_status" => $this->lesson_status,
+            "updated_at" => $this->updated_at,
+            "score_raw" => $this->score_raw,
+        ];
+
+        return $data;
+    }
+
 }
