@@ -63,6 +63,7 @@ class ScormScoTrackingModel extends Model
             "lesson_status" => $this->lesson_status,
             "updated_at" => $this->updated_at,
             "score_raw" => $this->score_raw,
+            "score_max" => $this->score_max,
         ];
 
         return $data;
