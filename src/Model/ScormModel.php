@@ -35,6 +35,11 @@ class ScormModel extends Model
     ];
 
     /**
+     * Create a static array of sorts that can be overriden at the model level
+     */
+    public static $valid_sorts = ["title", "created_at"];
+
+    /**
      * Get the parent resource model (user or post).
      */
     public function resourceable()
@@ -82,5 +87,33 @@ class ScormModel extends Model
         ];
 
         return $data;
+    }
+
+    /**
+     * Validate the sort direction
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function validateDirection(string $value)
+    {
+        if (strtolower($value) == "asc" || strtolower($value) == "desc") {
+            return strtolower($value);
+        }
+        return "asc";
+    }
+
+    /**
+     * Given a requested sort param, validate it and format it
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function validateSort(string $value)
+    {
+        if (in_array(strtolower($value), static::$valid_sorts)) {
+            return strtolower($value);
+        }
+        return "updated_at";
     }
 }

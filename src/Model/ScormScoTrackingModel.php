@@ -37,6 +37,12 @@ class ScormScoTrackingModel extends Model
         "details" => "array",
     ];
 
+    /**
+     * Create a static array of sorts that can be overriden at the model level
+     */
+    public static $valid_sorts = ["title", "created_at"];
+
+
     public function getTable()
     {
         return config("scorm.table_names.scorm_sco_tracking_table", parent::getTable());
@@ -50,6 +56,11 @@ class ScormScoTrackingModel extends Model
     public function user()
     {
         return $this->belongsTo(config("scorm.user_model"));
+    }
+
+    public function scorm()
+    {
+        return $this->belongsTo(ScormModel::class, "sco_id", "id");
     }
 
     /**
@@ -71,4 +82,33 @@ class ScormScoTrackingModel extends Model
 
         return $data;
     }
+
+    /**
+     * Validate the sort direction
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function validateDirection(string $value)
+    {
+        if (strtolower($value) == "asc" || strtolower($value) == "desc") {
+            return strtolower($value);
+        }
+        return "asc";
+    }
+
+    /**
+     * Given a requested sort param, validate it and format it
+     *
+     * @param string $value
+     * @return string
+     */
+    public static function validateSort(string $value)
+    {
+        if (in_array(strtolower($value), static::$valid_sorts)) {
+            return strtolower($value);
+        }
+        return "updated_at";
+    }
+
 }
